@@ -1,13 +1,14 @@
-import sequelize from '../libs/database.js'
+import { create_medium_user , fetch_medium_users } from "@/services/dbService"
 
 export default async function test(req, res){
     
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
-    
-    return res.json({msg: 'Test'})
+    await create_medium_user({
+        firstName: "Luciano",
+        lastName: "Gabrielli",
+        status: 1
+    })
+
+    const user = await fetch_medium_users();
+
+    return res.json(user);
 }
