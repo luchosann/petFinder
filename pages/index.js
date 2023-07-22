@@ -1,7 +1,6 @@
 function IndexPage() {
-
   return (
-    <div>Home test</div>
+    <div>Home test test</div>
   )
 }
 
