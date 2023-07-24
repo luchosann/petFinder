@@ -6,7 +6,9 @@ import { useState } from "react";
 function Dashboard() {
     const [user, setUser] = useState({
         email: '',
-        username: '',
+        userName: '',
+        firstName:'',
+        lastName:''
     })
     
     

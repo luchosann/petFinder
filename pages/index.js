@@ -1,6 +1,10 @@
+import styles from '@/styles/Home.module.css'
+
 function IndexPage() {
   return (
-    <div>Home test test</div>
+    <div className={styles.description}>
+      <p> Home </p>
+    </div>
   )
 }
 

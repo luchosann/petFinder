@@ -3,11 +3,12 @@ import axios from "axios";
 
 function RegisterPage() {
     const [newUser, setUser] = useState({
-        firsName:'',
+        firstName:'',
         lastName: '',
         userName:'',
         email:'',
-        password:''
+        password:'',
+        status: '1'
     });
     
     const handleChange = (e) => {
@@ -20,7 +21,7 @@ function RegisterPage() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(newUser);
-        const response = await axios.post('', newUser)
+        const response = await axios.post('/api/test', newUser)
         console.log(response)
     }
 
@@ -28,9 +29,9 @@ function RegisterPage() {
     return(
         <div>
             <form onSubmit={handleSubmit}>
-                <input name='firsName' 
-                    type='firsName' 
-                    placeholder='Firs name'
+                <input name='firstName' 
+                    type='firstName' 
+                    placeholder='First name'
                     onChange={handleChange}
                 />
                 <input name='lastName' 

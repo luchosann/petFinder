@@ -7,16 +7,12 @@ module.exports = {
       "medium_users",
       [
         {
-          firstName: "DONTKILLME",
-          lastName: "YOUCANTKILLME",
+          firstName: "Prueba",
+          lastName: "1",
+          userName: "prueba 1",
+          email: "prueba@local.local",
+          password: "1234",
           status: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          firstName: "YOUCANTKILLME",
-          lastName: "DONTKILLME",
-          status: 0,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

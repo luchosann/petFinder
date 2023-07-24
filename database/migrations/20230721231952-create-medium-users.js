@@ -5,15 +5,31 @@ module.exports = {
     await queryInterface.createTable('medium_users', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        autoIncrement: true,
       },
       firstName: {
-        type: Sequelize.STRING
+          type: Sequelize.TEXT,
+          allowNull: false,
       },
       lastName: {
-        type: Sequelize.STRING
+          type: Sequelize.TEXT,
+          allowNull: false,
+      },
+      userName: {
+          type: Sequelize.STRING(64),
+          allowNull: false,
+          unique: true,
+      },
+      email: {
+          type: Sequelize.STRING(128),
+          allowNull: false,
+          unique: true,
+      },
+      password: {
+          type: Sequelize.STRING(64),
+          allowNull: false,
       },
       status: {
         type: Sequelize.BOOLEAN
