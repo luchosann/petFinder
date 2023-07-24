@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { router } from "next/router";
+
 
 function RegisterPage() {
     const [newUser, setUser] = useState({
@@ -20,9 +22,10 @@ function RegisterPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(newUser);
-        const response = await axios.post('/api/test', newUser)
-        console.log(response)
+        const response = await axios.post('/api/auth/register', newUser)
+        if (response.status == 200){
+            router.push('/dashboard')
+        }
     }
 
 

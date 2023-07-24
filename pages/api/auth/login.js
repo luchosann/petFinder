@@ -5,9 +5,6 @@ import { find_user } from "@/services/dbService";
 export default async function loginHandler(req, res) {
     const {email, password} = req.body;
 
-    console.log(req.body.email);
-    console.log(email);
-
     try {
         const user = await find_user(req.body);
         console.log(user);
