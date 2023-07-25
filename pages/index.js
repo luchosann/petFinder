@@ -1,7 +1,6 @@
 import styles from '@/styles/Home.module.css'
 import { router } from "next/router";
 
-
 function IndexPage() {
   return (
     <div className={styles.description}>
