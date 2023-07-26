@@ -1,4 +1,6 @@
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@500&family=Kodchasan:wght@200&family=Koulen&family=Lakki+Reddy&family=Luckiest+Guy&display=swap');
+
+/* :root {
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
@@ -71,7 +73,7 @@
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
   }
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -86,18 +88,61 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #EEE2DF !important;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+}
+
+.nav{
+  background: #C97C5D;
+  font-family: 'Koulen', cursive;
+}
+
+.navbar-brand{
+  color: pink;
+}
+
+.me-auto{
+  margin-right: 0;
+}
+
+
+.navbar-nav a{
+  background-color:#C89F9C;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+header{
+  text-align: center;
+  margin-top: 50px;
+}
+
+h1{
+  font-family: 'Luckiest Guy', cursive; 
+  color: #247BA0 !important;
+  letter-spacing: 0.3em;
+
+}
+
+main{
+  text-align: center;
+  padding-top: 5em;
+  padding-right: 5em;
+}
+
+main h2{
+
+  font-family: 'Kodchasan', sans-serif;
+  padding-bottom: 2em;
+}
+
+main p{
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 1.2em;
+
 }
 
 @media (prefers-color-scheme: dark) {
