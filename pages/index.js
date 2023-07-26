@@ -1,11 +1,13 @@
-import styles from '@/styles/Home.module.css'
-import 'bootstrap/dist/css/bootstrap.css';
-
+import SiteNav from '@/components/sitenav'
+import Header from '@/components/header'
+import Main from '@/components/main'
 
 function IndexPage() {
   return (
-    <div className={styles.description}>
-     
+    <div>
+      <SiteNav/>
+      <Header/>
+      <Main image='/src/assets/mainlogo.png'/>
     </div>
   )
 }

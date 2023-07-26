@@ -1,4 +1,4 @@
-# RUN WITH DOCKER: 
+## RUN WITH DOCKER: 
 ```bash
 docker-compose up
 ```

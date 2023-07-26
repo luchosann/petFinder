@@ -1,10 +1,8 @@
-import mainlogo from './../public/src/assets/mainlogo.svg';
-
-const Main = () => {
+const Main = (props) => {
     return(
         <main className='row'>
             <div className='col'>
-                <img src={mainlogo} />
+                <img src={props.image} />
             </div>
             <div className='col'>
                 <h2>¡Bienvenidos a nuestra plataforma de adopción de mascotas!</h2>
