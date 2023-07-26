@@ -1,4 +1,4 @@
-import mainlogo from './../src/assets/mainlogo.svg';
+import mainlogo from './../public/src/assets/mainlogo.svg';
 
 const Main = () => {
     return(
