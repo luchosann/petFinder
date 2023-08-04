@@ -18,7 +18,6 @@ function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // console.log(credentials);
         const response = await axios.post('/api/auth/login', credentials)
         console.log(response)
         if (response.status == 200) {

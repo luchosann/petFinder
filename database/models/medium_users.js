@@ -12,6 +12,7 @@ const init_medium_users = (sequelize, Types) => {
       email: DataTypes.STRING(128),
       password: DataTypes.STRING(64),
       status: DataTypes.BOOLEAN,
+      role: DataTypes.STRING
     },
     {
       sequelize,

@@ -5,16 +5,17 @@ import { serialize } from "cookie";
 export default async function test(req, res){
     const user = req.body;
 
-    await create_medium_user(user);
+    const response = await create_medium_user(user);
 
     try {
         const token = Jwt.sign({
             exp: Math.floor(Date.now() / 1000) + (60 * 60),
-            email: user.email,
-            userName: user.userName,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            status: user.status
+            id: response.id,
+            email: response.email,
+            userName: response.userName,
+            firstName: response.firstName,
+            lastName: response.lastName,
+            status: response.status
         }, 'secret')
         
         const serialized = serialize('tokenUser', token, {

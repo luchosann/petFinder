@@ -34,6 +34,10 @@ module.exports = {
       status: {
         type: Sequelize.BOOLEAN
       },
+      role: {
+        type: Sequelize.TEXT,
+        defaultValue: 'user',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

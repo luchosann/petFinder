@@ -15,12 +15,17 @@
     "dotenv": "^16.3.1",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
+    "fetch-blob": "^4.0.0",
+    "formidable": "^3.5.0",
+    "formidable-serverless": "^1.1.1",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.1",
     "mysql2": "^3.5.2",
     "next": "13.4.10",
     "react": "18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "18.2.0",
-    "sequelize": "^6.32.1"
+    "sequelize": "^6.32.1",
+    "sharp": "^0.32.4"
   }
 }

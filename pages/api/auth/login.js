@@ -11,6 +11,7 @@ export default async function loginHandler(req, res) {
         if (email === user.email && password === user.password){
             const token = Jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                id: user.id,
                 email: user.email,
                 userName: user.userName,
                 firstName: user.firstName,
