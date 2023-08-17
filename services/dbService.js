@@ -34,6 +34,12 @@ export async function find_user({email}) {
   return user.dataValues;
 }
 
+//--------------------------------------------------------------------------
+export async function find_userName({userName}) {
+  const user = await medium_users.findOne({ where: { userName: `${userName}` } });
+  return user.dataValues;
+}
+
 
 //---------------------------- POST DATABASE CONTROLLER ----------------------------------------------
 export async function create_post(postData = {name, description, petType, location, gender, size, dewormed, vaccinated, chip, sterilized, img1, img2, img3, userId}) {
@@ -52,6 +58,21 @@ export async function fetch_userPosts({userId}){
     {
       where: {
         userId: userId
+      }
+    });
+    return getPost;
+  }
+  //------------------------------------------------------------------------
+  export async function fetch_userPosts_all() {
+    const users = await usersPosts.findAll();
+    console.log(users);
+    return users;
+  }
+  //------------------------------------------------------------------------
+  export async function fetch_post(postId){
+    const getPost = await usersPosts.findAll({
+      where: {
+        id: postId
       }
     });
     return getPost;
@@ -85,9 +106,3 @@ export async function fetch_userPosts({userId}){
     return verificador(usersPosts, data, ignoreKey);
   }
   
-  //------------------------------------------------------------------------
-  export async function fetch_userPosts_all() {
-    const users = await usersPosts.findAll();
-    console.log(users);
-    return users;
-  }

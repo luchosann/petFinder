@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 function ImagesForm({ onSubmit }) {
-    const [test, setTest] = useState({
+    const [images, setImages] = useState({
         img1: null,
         img2: null,
         img3: null
@@ -10,32 +10,32 @@ function ImagesForm({ onSubmit }) {
     
 
     useEffect(() => {
-        onSubmit(test);
-    }, [test, onSubmit])
+        onSubmit(images);
+    }, [images, onSubmit])
 
     const handleChange = (event) => {
         const { name } = event.target;
-        setTest((prevTest) => ({
+        setImages((prevTest) => ({
             ...prevTest,
             [name]: event.target.files[0],
         }));
-        console.log(test)
+        console.log(images)
     };
-    
-    return (
-        <form>
+
+    const ImagesComponent = (Img, name) => {
+        return (
             <label>
                 <input
                     type="file"
                     hidden
-                    name="img1"
+                    name={name}
                     onChange={handleChange}
                 />
                 <div>
-                    {test.img1 ? (
+                    {Img ? (
                         <img
                             style={{ maxWidth: 200, maxHeight: 200 }}
-                            src={URL.createObjectURL(test.img1)}
+                            src={URL.createObjectURL(Img)}
                             alt=""
                         />
                     ) : (
@@ -43,6 +43,39 @@ function ImagesForm({ onSubmit }) {
                     )}
                 </div>
             </label>
+        )
+    }
+    
+    return (
+        <form>
+            {ImagesComponent(images.img1, 'img1')}
+            {images.img1
+                ? <>
+                    {ImagesComponent(images.img2, 'img2')}
+                    {images.img2 ? ImagesComponent(images.img3, 'img3') : null}
+                </>
+                : null
+            }
+            {/* <label>
+                <input
+                    type="file"
+                    hidden
+                    name="img1"
+                    onChange={handleChange}
+                />
+                <div>
+                    {images.img1 ? (
+                        <img
+                            style={{ maxWidth: 200, maxHeight: 200 }}
+                            src={URL.createObjectURL(images.img1)}
+                            alt=""
+                        />
+                    ) : (
+                        <span> Select image</span>
+                    )}
+                </div>
+            </label>
+            
             <label>
                 <input
                     type="file"
@@ -51,10 +84,10 @@ function ImagesForm({ onSubmit }) {
                     onChange={handleChange}
                 />
                 <div>
-                    {test.img2 ? (
+                    {images.img2 ? (
                         <img
                             style={{ maxWidth: 200, maxHeight: 200 }}
-                            src={URL.createObjectURL(test.img2)}
+                            src={URL.createObjectURL(images.img2)}
                             alt=""
                         />
                     ) : (
@@ -62,6 +95,7 @@ function ImagesForm({ onSubmit }) {
                     )}
                 </div>
             </label>
+
             <label>
                 <input
                     type="file"
@@ -70,17 +104,17 @@ function ImagesForm({ onSubmit }) {
                     onChange={handleChange}
                 />
                 <div>
-                    {test.img3 ? (
+                    {images.img3 ? (
                         <img
                             style={{ maxWidth: 200, maxHeight: 200 }}
-                            src={URL.createObjectURL(test.img3)}
+                            src={URL.createObjectURL(images.img3)}
                             alt=""
                         />
                     ) : (
                         <span> Select image</span>
                     )}
                 </div>
-            </label>
+            </label> */}
             </form>
         );
     }

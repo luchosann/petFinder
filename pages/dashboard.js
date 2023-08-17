@@ -1,6 +1,7 @@
 const { default: axios } = require("axios")
-import { router } from "next/router";
 import { useEffect, useState } from "react";
+import Test from "./test";
+import LoggedNav from "@/components/loggedNav";
 
 function Dashboard() {
     const [user, setUser] = useState({
@@ -12,7 +13,7 @@ function Dashboard() {
     })
     
     useEffect(() => {
-        getProfile()
+        // getProfile()
     }, []);
     
     const getProfile = async () => { 
@@ -20,27 +21,23 @@ function Dashboard() {
         setUser(response.data)
     }
 
-    const logoutProfile = async () => {
-        try {
-            await axios.post('/api/auth/logout');
-        } catch (error) {
-            console.log(error);
-        }
-        router.push('/login');
-    } 
     return(
-        <div>
-            <h1>Dashboard</h1>
-            <h2>{user.userName}</h2>
-            <p>{user.firstName}</p>
-            <p>{user.lastName}</p>
-            <p>{user.email}</p>
-            <p> id: {user.id}</p>
-
-            <button onClick={() => logoutProfile()}>
-                logout 
-            </button>
-        </div>
+        <>
+            <LoggedNav/>
+            <div className="container-xxl">
+                <div className="row row-cols-2">
+                    <div className="col-md-2 container"> 
+                        <p>Test</p>
+                        <p>Test</p>
+                        <p>Test</p>
+                        <p>Test</p>
+                    </div>
+                    <div className="col-md-8 container-md">
+                        <Test/>
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
 

@@ -15,7 +15,8 @@ export default async function test(req, res){
             userName: response.userName,
             firstName: response.firstName,
             lastName: response.lastName,
-            status: response.status
+            status: response.status,
+            role: 'user'
         }, 'secret')
         
         const serialized = serialize('tokenUser', token, {

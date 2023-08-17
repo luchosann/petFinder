@@ -18,7 +18,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          firstName: "Lucaino",
+          firstName: "Luciano",
           lastName: "Gabrielli",
           userName: "Luchosann",
           email: "lucianogabrielli67@gmail.com",

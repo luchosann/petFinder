@@ -1,7 +1,8 @@
-import PostForm from "@/components/postForm";
-import ImagesForm from "@/components/imagesForm";
+import PostForm from "@/components/post/postForm";
+import ImagesForm from "@/components/post/imagesForm";
 import { useState , useEffect} from 'react';
 import axios from "axios";
+import LoggedNav from "@/components/loggedNav";
 
 function TestComponent() {
     const [dataPost, setPost] = useState({});
@@ -41,14 +42,18 @@ function TestComponent() {
     
     return (
         <div>
-            <h1>Nueva publicacion</h1>
-            <PostForm onSubmit={(data)=>{
-                setPost(data);
-            }}/>
-            <ImagesForm onSubmit={(data)=>{
-                setImages(data);
-            }}/>
-            <button onClick={handleUpload}> Enviar </button>
+            <LoggedNav/>
+            <div className="container">
+                <h1>Nueva publicacion</h1>
+                <PostForm onSubmit={(data)=>{
+                    setPost(data);
+                }}/>
+                <ImagesForm onSubmit={(data)=>{
+                    setImages(data);
+                }}/>
+                <button onClick={handleUpload}> Enviar </button>
+
+            </div>
         </div>
     );
 }
