@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@500&family=Kodchasan:wght@200&family=Koulen&family=Lakki+Reddy&family=Luckiest+Guy&display=swap');
 
-/* :root {
+:root {
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
@@ -43,6 +43,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
+  body {
+    background-color: #247BA0;
+  }
+
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
@@ -73,7 +78,7 @@
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
   }
-} */
+}
 
 * {
   box-sizing: border-box;
@@ -87,9 +92,9 @@ body {
   overflow-x: hidden;
 }
 
-body {
+/* body {
   background-color: #EEE2DF !important;
-}
+} */
 
 a {
   text-decoration: none;

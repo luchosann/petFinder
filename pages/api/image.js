@@ -46,6 +46,7 @@ const handler = async (req, res) => {
             name: fields.name[0],
             description: fields.description[0],
             petType: fields.petType[0],
+            age: fields.age[0],
             location: fields.location[0],
             gender: fields.gender[0],
             size: fields.size[0],
@@ -56,16 +57,14 @@ const handler = async (req, res) => {
             img1,
             img2,
             img3,
-            userId: fields.id[0]
+            userEmail: fields.userEmail[0]
       }
 
         const v = await verificadorUserPosts(post)
         if (v.res){
           const response = await create_post(post);
-          console.log(response);
-          res.status(200).json({msg: 'upload succesful'})
+          res.status(200).json({msg: 'upload succesful', id: response.id})
         } else {
-          console.log(v.incomplete);
           res.status(400).json({incomplete: v.incomplete})
           await fs.rm(process.cwd() + '/public/uploads/' + img1);
         }

@@ -1,67 +1,73 @@
-import { useState } from "react";
 import axios from "axios";
-import { router } from "next/router";
+import { signIn } from "next-auth/react";
+import Link from 'next/link';
 
+function Register() {
 
-function RegisterPage() {
-    const [newUser, setUser] = useState({
-        firstName:'',
-        lastName: '',
-        userName:'',
-        email:'',
-        password:'',
-        status: '1'
-    });
+    async function handleSubmit(e){
+        e.preventDefault();
+        const form = new FormData(e.target);
+
+        try {
+            const user = await axios.post('/api/auth/register', {
+                firstName: form.get('firstName'),
+                lastName: form.get('lastName'),
+                userName: form.get('userName'),
+                email: form.get('email'),
+                password: form.get('password'),
+            })
     
-    const handleChange = (e) => {
-        setUser({
-            ...newUser,
-            [e.target.name]: e.target.value
-        })
+            if(!user){
+                return null;
+            }
+            
+            await signIn('credentials', {
+                email: form.get('email'),
+                password: form.get('password'),
+                callbackUrl: '/dashboard',
+            })
+        } catch (error) {
+            console.error('Error al registrarse:', error);
+        }        
+
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const response = await axios.post('/api/auth/register', newUser)
-        if (response.status == 200){
-            router.push('/dashboard')
-        }
-    }
-
-
-    return(
-        <div>
-            <form onSubmit={handleSubmit}>
+    return (
+        <div className="container">
+            <form onSubmit={handleSubmit} className="row gap-1">
                 <input name='firstName' 
                     type='firstName' 
                     placeholder='First name'
-                    onChange={handleChange}
+                    required
                 />
                 <input name='lastName' 
                     type='lastName' 
                     placeholder='Last name'
-                    onChange={handleChange}
+                    required
                 />
                 <input name='userName' 
                     type='userName' 
                     placeholder='Username'
-                    onChange={handleChange}
+                    required
                 />
                 <input name='email' 
                     type='email' 
                     placeholder='email'
-                    onChange={handleChange}
+                    required
                 />
                 <input name='password' 
                     type='password' 
                     placeholder='password'
-                    onChange={handleChange}
+                    required
                 />
-                <button>Register</button>
-
+                <button className="">Register</button>
             </form>
+            <p>
+                Already registered? <Link href='/login'>Login here</Link>
+            </p>
+
         </div>
     )
 }
 
-export default RegisterPage;
+export default Register;

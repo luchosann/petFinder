@@ -1,7 +1,8 @@
-
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 function ImagesForm({ onSubmit }) {
+    const [err, setErr] = useState(null);
     const [images, setImages] = useState({
         img1: null,
         img2: null,
@@ -15,11 +16,18 @@ function ImagesForm({ onSubmit }) {
 
     const handleChange = (event) => {
         const { name } = event.target;
-        setImages((prevTest) => ({
-            ...prevTest,
-            [name]: event.target.files[0],
-        }));
-        console.log(images)
+        const selectedFile = event.target.files[0];
+
+        const allowedFormats = ["image/jpeg", "image/png", "image/gif"];
+
+        if (selectedFile && allowedFormats.includes(selectedFile.type)) {
+            setImages((prevImages) => ({
+              ...prevImages,
+              [name]: selectedFile,
+            }));
+          } else {
+            console.log("Archivo no permitido:", selectedFile);
+          }
     };
 
     const ImagesComponent = (Img, name) => {
@@ -33,10 +41,13 @@ function ImagesForm({ onSubmit }) {
                 />
                 <div>
                     {Img ? (
-                        <img
-                            style={{ maxWidth: 200, maxHeight: 200 }}
+                        <Image 
                             src={URL.createObjectURL(Img)}
-                            alt=""
+                            alt="Pet image"
+                            loading="lazy"
+                            width={200}
+                            height={200}
+
                         />
                     ) : (
                         <span> Select image</span>
@@ -56,65 +67,6 @@ function ImagesForm({ onSubmit }) {
                 </>
                 : null
             }
-            {/* <label>
-                <input
-                    type="file"
-                    hidden
-                    name="img1"
-                    onChange={handleChange}
-                />
-                <div>
-                    {images.img1 ? (
-                        <img
-                            style={{ maxWidth: 200, maxHeight: 200 }}
-                            src={URL.createObjectURL(images.img1)}
-                            alt=""
-                        />
-                    ) : (
-                        <span> Select image</span>
-                    )}
-                </div>
-            </label>
-            
-            <label>
-                <input
-                    type="file"
-                    hidden
-                    name="img2"
-                    onChange={handleChange}
-                />
-                <div>
-                    {images.img2 ? (
-                        <img
-                            style={{ maxWidth: 200, maxHeight: 200 }}
-                            src={URL.createObjectURL(images.img2)}
-                            alt=""
-                        />
-                    ) : (
-                        <span> Select image</span>
-                    )}
-                </div>
-            </label>
-
-            <label>
-                <input
-                    type="file"
-                    hidden
-                    name="img3"
-                    onChange={handleChange}
-                />
-                <div>
-                    {images.img3 ? (
-                        <img
-                            style={{ maxWidth: 200, maxHeight: 200 }}
-                            src={URL.createObjectURL(images.img3)}
-                            alt=""
-                        />
-                    ) : (
-                        <span> Select image</span>
-                    )}
-                </div>
-            </label> */}
             </form>
         );
     }

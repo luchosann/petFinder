@@ -7,7 +7,6 @@ export default async function loginHandler(req, res) {
 
     try {
         const user = await find_user(req.body);
-        console.log(user);
         if (email === user.email && password === user.password){
             const token = Jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),

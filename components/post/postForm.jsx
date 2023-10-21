@@ -6,6 +6,7 @@ function PostForm({ onSubmit }){
         name: '',
         description: '',
         petType: '',
+        age: '',
         location: '',
         gender: '',
         size: '',
@@ -36,6 +37,9 @@ function PostForm({ onSubmit }){
                         onChange={handleChange}
                     />
                     <input name='description' type='description' placeholder='description'
+                        onChange={handleChange}
+                    />
+                    <input name='age' type='number' placeholder='age'
                         onChange={handleChange}
                     />
                     <select  name='gender' value={post.gender}

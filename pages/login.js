@@ -1,44 +1,31 @@
-import { useState } from "react";
-import axios from "axios";
-import { router } from "next/router";
+import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 
+export default function Login() {
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = new FormData(e.target);
 
-function LoginPage() {
-    const [credentials, setCredentials] = useState({
-        email: '',
-        password: ''
-    })
-
-    const handleChange = (e) => {
-        setCredentials({
-            ...credentials,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const response = await axios.post('/api/auth/login', credentials)
-        console.log(response)
-        if (response.status == 200) {
-            router.push('/dashboard');
-        }
-        
-    }
-    
-    return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input name='email' type='email' placeholder='email'
-                    onChange={handleChange}
-                />
-                <input name='password' type='password' placeholder='password'
-                    onChange={handleChange}
-                />
-                <button>Login</button>
-            </form>
-        </div>
-    )
+    await signIn('credentials', {
+      email: form.get('email'),
+      password: form.get('password'),
+      callbackUrl: '/dashboard',
+    });
+  }
+  
+  return (
+    <div className='container'>
+      <form onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <label htmlFor='email'>email:</label>
+        <input type='text' id='email' name='email' required />
+        <label htmlFor='password'>Password:</label>
+        <input type='password' id='password' name='password' required />
+        <button type='submit'>Submit</button>
+      </form>
+      <p>
+        Not registered yet? <Link href='/register'>Register here</Link>
+      </p>
+    </div>
+  );
 }
-
-export default LoginPage;

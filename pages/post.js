@@ -2,27 +2,14 @@ import PostForm from "@/components/post/postForm";
 import ImagesForm from "@/components/post/imagesForm";
 import { useState , useEffect} from 'react';
 import axios from "axios";
-import LoggedNav from "@/components/loggedNav";
+import SiteNav from "@/components/sitenav";
+import { router } from "next/router";
+import { useSession } from "next-auth/react";
 
 function TestComponent() {
+    const { data } = useSession();
     const [dataPost, setPost] = useState({});
     const [images, setImages] = useState({});
-    const [user, setUser] = useState({
-        id: '',
-        email: '',
-        userName: '',
-        firstName:'',
-        lastName:''
-    })
-
-    useEffect(() => {
-        getProfile()
-    }, [])
-
-    const getProfile = async () => { 
-        const response = await axios.get('/api/profile');
-        setUser(response.data)
-    }
     
     const handleUpload = async () => {
         const post = {...dataPost, ...images};
@@ -31,18 +18,19 @@ function TestComponent() {
             Object.entries(post).forEach(([key, value]) => {
                 fromData.append(key, value);
             });
-            fromData.append('id', user.id);
-            
+            console.log(data.user);
+            fromData.append('userEmail', data.user.email);            
             const response = await axios.post('/api/image', fromData);
-            console.log(response);
+            console.log(response)
+            // router.push(`/postCard/${response.data.id}`);
         } catch (error) {
-            console.log(err.response?.data)
+            console.log(error.response?.data)
         }
     }
     
     return (
         <div>
-            <LoggedNav/>
+            <SiteNav/>
             <div className="container">
                 <h1>Nueva publicacion</h1>
                 <PostForm onSubmit={(data)=>{
