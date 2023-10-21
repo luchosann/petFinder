@@ -14,6 +14,7 @@ const init_users_posts = (sequelize, Types) => {
       name: DataTypes.STRING,
       description:DataTypes.TEXT,
       petType:DataTypes.TEXT,
+      age:DataTypes.INTEGER,
       location:DataTypes.TEXT,
       gender:DataTypes.TEXT,
       size:DataTypes.TEXT,
@@ -24,11 +25,11 @@ const init_users_posts = (sequelize, Types) => {
       img1: DataTypes.TEXT,
       img2: DataTypes.TEXT,
       img3: DataTypes.TEXT,
-      userId: {
-        type: DataTypes.INTEGER,
+      userEmail: {
+        type: DataTypes.STRING,
         references: {
           model: 'medium_users', 
-          key: 'id'
+          key: 'email'
         }
       }
     },

@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      age: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       location: {
         type: Sequelize.STRING,
         allowNull: false
@@ -40,7 +44,6 @@ module.exports = {
       vaccinated: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
-
       },
       chip: {
         type: Sequelize.BOOLEAN,
@@ -50,12 +53,12 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      userId: {
-        type: Sequelize.INTEGER,
+      userEmail: {
+        type: Sequelize.STRING,
         allowNull: false,
         references: {
           model: 'medium_users', 
-          key: 'id'
+          key: 'email'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
