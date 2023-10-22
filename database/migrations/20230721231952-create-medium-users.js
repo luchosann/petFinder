@@ -33,11 +33,11 @@ module.exports = {
       },
       locate: {
           type: Sequelize.TEXT,
-          allowNull: false,
+          allowNull: true,
       },
       description: {
           type: Sequelize.TEXT,
-          allowNull: false,
+          allowNull: true,
       },
       img: {
         type: Sequelize.STRING,
