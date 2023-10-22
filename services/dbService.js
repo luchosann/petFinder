@@ -33,6 +33,8 @@ export async function create_medium_user({ firstName, lastName, userName, email,
       email: email,
       password: password,
       status: status,
+      img: 'default.jpg',
+      role: 'user'
     });
     return users.dataValues;
   } catch (error) {

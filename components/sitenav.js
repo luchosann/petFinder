@@ -1,10 +1,12 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+
 import { router } from "next/router";
 import { useSession } from 'next-auth/react';
-import ProfileDropdown from './profileDropdown';
 import { useEffect, useState } from 'react';
+
+import ProfileDropdown from './profileDropdown';
 
 const SiteNav = () => {
   const { data, status } = useSession(); 

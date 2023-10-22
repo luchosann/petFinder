@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { router } from 'next/router';
 
 
 function PetCardData(props) {
@@ -17,6 +18,7 @@ function PetCardData(props) {
                 last_msg: ''
             }
             await axios.post('/api/rooms', User);
+            router.push('/chat');
         } catch (error) {
             console.log(error);
         }

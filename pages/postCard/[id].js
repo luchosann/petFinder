@@ -30,10 +30,10 @@ function PostCard() {
     }, [route.query.id, dataPost]);
 
     return (
-        <>
+        <div>
             <SiteNav/>
             { dataPost ? <PetCardData {...dataPost} id={route.query.id}/> : <p>Loading...</p>} 
-        </>
+        </div>
     )
 }
 

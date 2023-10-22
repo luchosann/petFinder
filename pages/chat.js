@@ -1,31 +1,35 @@
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-import Chat_Private from "@/components/chat_component";
-import {  fetch_rooms_user } from "@/services/dbService";
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "./api/auth/[...nextauth]";
 
+import {  fetch_rooms_user } from "@/services/dbService";
+import { authOptions } from "./api/auth/[...nextauth]";
+import Chat_Private from "@/components/chat_component";
+import SiteNav from "@/components/sitenav";
 
 const Home = ({rooms}) => {
   const [room, setRoom] = useState(-1);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col col-sm-2">
-            {rooms.map((value) => (
-              <div key={value.id} className="col">
-                <button key={value.id} onClick={()=>setRoom(value.id)}>
-                  <h2>{value.title}</h2>
-                  </button>
-              </div>
-            ))}
-        </div>
-        <div className="col">
-          {room ? <Chat_Private room={room} /> : <p>Loading...</p>}
+    <>
+      <SiteNav/>
+      <div className="container">
+        <div className="row">
+          <div className="col col-sm-2">
+              {rooms.map((value) => (
+                <div key={value.id} className="col">
+                  <button key={value.id} onClick={()=>setRoom(value.id)}>
+                    <h2>{value.title}</h2>
+                    </button>
+                </div>
+              ))}
+          </div>
+          <div className="col">
+            {room ? <Chat_Private room={room} /> : <p>Loading...</p>}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

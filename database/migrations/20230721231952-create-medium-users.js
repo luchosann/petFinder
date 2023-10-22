@@ -18,18 +18,30 @@ module.exports = {
           allowNull: false,
       },
       userName: {
-          type: Sequelize.STRING(64),
-          allowNull: false,
-          unique: true,
+        type: Sequelize.STRING(64),
+        allowNull: false,
+        unique: true,
       },
       email: {
-          type: Sequelize.STRING(128),
-          allowNull: false,
-          unique: true,
+        type: Sequelize.STRING(128),
+        allowNull: false,
+        unique: true,
       },
       password: {
-          type: Sequelize.STRING(64),
+        type: Sequelize.STRING(64),
+        allowNull: false,
+      },
+      locate: {
+          type: Sequelize.TEXT,
           allowNull: false,
+      },
+      description: {
+          type: Sequelize.TEXT,
+          allowNull: false,
+      },
+      img: {
+        type: Sequelize.STRING,
+        defaultValue: 'default.jpg',
       },
       status: {
         type: Sequelize.BOOLEAN

@@ -1,29 +1,14 @@
-.chatContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-  max-width: 800px;
-  padding: 20px;
-  border: 1px solid #ccc;
+.messageContainer {
+	height: 800px;
+	overflow-y: auto;
+	border: 1px solid #ccc;
+	padding: 10px;
 }
 
-.message {
-  padding: 10px 10px;
+.inputContainer {
 	display: flex;
-	justify-content: flex-end;
-	flex-direction: column;
-	align-self: flex-end;
-  color: #fff;
-}
-
-.left {
-  background-color: #aeeaff;
-  align-self: start;
-}
-
-.right {
-  background-color: #cdf5a6;
-  align-self: end;
+	border-top: 1px solid #ccc;
+	padding: 10px;
 }
 
 .bubbleWrapper {

@@ -1,10 +1,12 @@
-import PostForm from "@/components/post/postForm";
-import ImagesForm from "@/components/post/imagesForm";
-import { useState , useEffect} from 'react';
+import { useState } from 'react';
 import axios from "axios";
-import SiteNav from "@/components/sitenav";
 import { router } from "next/router";
 import { useSession } from "next-auth/react";
+
+import PostForm from "@/components/post/postForm";
+import ImagesForm from "@/components/post/imagesForm";
+import SiteNav from "@/components/sitenav";
+
 
 function TestComponent() {
     const { data } = useSession();
@@ -21,8 +23,7 @@ function TestComponent() {
             console.log(data.user);
             fromData.append('userEmail', data.user.email);            
             const response = await axios.post('/api/image', fromData);
-            console.log(response)
-            // router.push(`/postCard/${response.data.id}`);
+            router.push(`/postCard/${response.data.id}`);
         } catch (error) {
             console.log(error.response?.data)
         }

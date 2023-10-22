@@ -1,6 +1,6 @@
 import { fetch_userPosts, fetch_medium_users, find_userName } from "@/services/dbService";
-
 import Image from "next/image";
+
 import SiteNav from "@/components/sitenav";
 import PetCard from "@/components/dashboard/card";
 
@@ -12,7 +12,7 @@ function Page({ posts, User }){
                 <div className="row">
                     <div className="col">
                         <Image
-                            src='/favicon.ico'
+                            src={'/profile_img/' + User.img}
                             alt="Profile image"
                             width={100}
                             height={100}
@@ -33,7 +33,6 @@ function Page({ posts, User }){
             </div>
         </div>
     )
-
 };
 
 export async function getStaticPaths() {
@@ -63,9 +62,8 @@ export async function getStaticProps({ params }) {
             lastName: user_response.lastName,
             userName: user_response.userName,
             email: user_response.email,
+            img: user_response.img
         };
-
-        console.log(User);
 
         const post_response = await fetch_userPosts({ userEmail: User.email });
     

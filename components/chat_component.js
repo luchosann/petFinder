@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import styles from '@/styles/Chat.module.css'
 
@@ -9,6 +9,7 @@ const Chat_Private = ({ room }) => {
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
   const { data: sessionData, status: sessionStatus } = useSession(); 
+  const messageContainerRef = useRef(null);
 
   useEffect(() => {
     if (room !== -1) {
@@ -39,6 +40,9 @@ const Chat_Private = ({ room }) => {
       
             socket.on('message', (msg) => {
               setAllMessages((prevMessages) => [...prevMessages, msg])
+              if (messageContainerRef.current) {
+                messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+              }
             });
         } else {
             throw new Error("Error initializing socket:", error)
@@ -48,12 +52,22 @@ const Chat_Private = ({ room }) => {
     }
   };
 
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (message.trim() !== "") {
       socket.emit("chatMessage", message);
       setMessage("");
+
+      if (messageContainerRef.current) {
+        messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+      }
     }
   };
 
@@ -64,7 +78,7 @@ const Chat_Private = ({ room }) => {
   return (
     <div>
       <h1>Chat app: {sessionData.user.userName}</h1>
-      <div>
+      <div className={styles.messageContainer} ref={messageContainerRef}>
         {allMessages.map(({ username, text, time }, index) => (
           <div key={index} className={`${styles.bubbleWrapper}`}>
             <div className={`${styles.inlineContainer} ${sessionData.user.userName === username ? styles.own : ''}`}>
@@ -77,7 +91,7 @@ const Chat_Private = ({ room }) => {
       </div>
 
 
-      <div>
+      <div className={styles.inputContainer}>
         <br />
         <form onSubmit={handleSubmit}>
           <input
